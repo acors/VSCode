@@ -13,8 +13,7 @@ function Stop-Process2
 	[CmdletBinding(SupportsShouldProcess = $true)]
 	[Alias()]
 	[OutputType([int])]
-	Param
-	(
+	Param (
 		# Param1 help description
 		[Parameter(Mandatory=$true,
 				   ValueFromPipelineByPropertyName=$true,
@@ -22,15 +21,12 @@ function Stop-Process2
 		$Name
 	)
 	
-	Begin
-	{
+	Begin {
 	}
-	Process
-	{
+	Process {
 		if ($PSCmdlet.ShouldProcess("")) {
 			$processes = Get-Process -Name $Name
-			foreach ($process in $processes)
-			{
+			foreach ($process in $processes) {
 				$id = $process.Id
 				$name = $process.Name
 				Write-Output "Killing $name ($id)"
@@ -41,7 +37,6 @@ function Stop-Process2
 			}
 		}
 	}
-	End
-	{
+	End {
 	}
 }
